@@ -295,24 +295,24 @@ public class ClassMetrics {
     public String toString() {
         return  //TODO: JUnit test is mising.
                 getWmc() +
-                        " " + getDit() +
-                        " " + getNoc() +
-                        " " + getCbo() +
-                        " " + getRfc() +
-                        " " + getLcom() +
-                        " " + getCa() +
-                        " " + getCe() +
-                        " " + getNpm() +
-                        " " + String.format("%.4f", getLcom3()) +
-                        " " + getLoc() +
-                        " " + String.format("%.4f", getDam()) +
-                        " " + getMoa() +
-                        " " + String.format("%.4f", getMfa()) +
-                        " " + String.format("%.4f", getCam()) +
-                        " " + getIc() +
-                        " " + getCbm() +
-                        " " + String.format("%.4f", getAmc()) +
-                        endl + printPlainCC();
+                " " + getDit() +
+                " " + getNoc() +
+                " " + getCbo() +
+                " " + getRfc() +
+                " " + getLcom() +
+                " " + getCa() +
+                " " + getCe() +
+                " " + getNpm() +
+                " " + String.format("%.4f", getLcom3()) +
+                " " + getLoc() +
+                " " + String.format("%.4f", getDam()) +
+                " " + getMoa() +
+                " " + String.format("%.4f", getMfa()) +
+                " " + String.format("%.4f", getCam()) +
+                " " + getIc() +
+                " " + getCbm() +
+                " " + String.format("%.4f", getAmc()) +
+                endl + printPlainCC();
     }
 
     /**
