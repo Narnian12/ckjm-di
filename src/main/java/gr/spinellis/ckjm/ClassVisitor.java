@@ -118,12 +118,16 @@ public class ClassVisitor extends org.apache.bcel.classfile.EmptyVisitor {
         System.out.println();
         
         Method[] methods = jc.getMethods();
-        System.out.print("methodTypes - ");
+        System.out.print("numMethods - ");
+        System.out.print(methods.length);
+        System.out.println();
+        System.out.print("methods - ");
         for(int i=0; i < methods.length; i++) {
+            System.out.print("methodTypes,");
             Type[] argTypes = methods[i].getArgumentTypes();
             // Print all method types
             for (int j = 0; j < argTypes.length; ++j) {
-                System.out.print("," + argTypes[j].toString());
+                System.out.print(argTypes[j].toString() + ',');
             }
             methods[i].accept(this);
         }
