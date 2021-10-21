@@ -109,7 +109,7 @@ public class ClassVisitor extends org.apache.bcel.classfile.EmptyVisitor {
         registerCoupling(super_name);
 
         mFields = jc.getFields();
-        System.out.print("fieldTypes - ");
+        System.out.print("field_params - ");
         for(int i=0; i < mFields.length; i++) {
             // Print all field types
             System.out.print("," + mFields[i].getType());
@@ -118,16 +118,12 @@ public class ClassVisitor extends org.apache.bcel.classfile.EmptyVisitor {
         System.out.println();
         
         Method[] methods = jc.getMethods();
-        System.out.print("numMethods - ");
-        System.out.print(methods.length);
-        System.out.println();
-        System.out.print("methods - ");
+        System.out.print("method_params - ");
         for(int i=0; i < methods.length; i++) {
-            System.out.print("methodTypes,");
             Type[] argTypes = methods[i].getArgumentTypes();
             // Print all method types
             for (int j = 0; j < argTypes.length; ++j) {
-                System.out.print(argTypes[j].toString() + ',');
+                System.out.print("," + argTypes[j].toString());
             }
             methods[i].accept(this);
         }
