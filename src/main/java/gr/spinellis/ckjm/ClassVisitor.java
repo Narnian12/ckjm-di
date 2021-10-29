@@ -108,14 +108,6 @@ public class ClassVisitor extends org.apache.bcel.classfile.EmptyVisitor {
         mClassMetrics.setDit(jc.getSuperClasses().length);
         registerCoupling(super_name);
 
-        mFields = jc.getFields();
-        System.out.print("field_params - " + mMyClassName);
-        for (int i=0; i < mFields.length; i++) {
-            // Print all field types
-            System.out.print(" " + mFields[i].getType());
-         }
-         System.out.println();
-        
         Method[] methods = jc.getMethods();
         System.out.print("method_params - " + mMyClassName);
         for (int i=0; i < methods.length; i++) {
