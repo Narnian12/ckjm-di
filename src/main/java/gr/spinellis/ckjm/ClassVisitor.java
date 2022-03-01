@@ -109,7 +109,7 @@ public class ClassVisitor extends org.apache.bcel.classfile.EmptyVisitor {
         registerCoupling(super_name);
 
         Method[] methods = jc.getMethods();
-        System.out.print("method_params - " + mMyClassName);
+        System.out.print("ckjm-analyzer " + mMyClassName + " params");
         for (int i=0; i < methods.length; i++) {
             Type[] argTypes = methods[i].getArgumentTypes();
             // Print all method types

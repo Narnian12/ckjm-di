@@ -29,6 +29,6 @@ public class PrintPlainResults implements CkjmOutputHandler {
     }
 
     public void handleClass(String name, ClassMetrics c) {
-        p.println("metrics - " + name + " " + c.toString());
+        p.println("ckjm-analyzer " + name + " metrics " + c.toString());
     }
 }
