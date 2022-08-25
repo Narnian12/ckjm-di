@@ -49,6 +49,7 @@ public class ClassVisitor extends org.apache.bcel.classfile.EmptyVisitor {
      * Its cardinality is used for calculating the CBO and CE.
      */
     private HashSet<String> mEfferentCoupledClasses = new HashSet<String>();
+    private Vector<String> efferentCouplingsList = new Vector<String>();
     
     /** Methods encountered.
      * Its cardinality is used for calculating the RFC.
@@ -78,6 +79,7 @@ public class ClassVisitor extends org.apache.bcel.classfile.EmptyVisitor {
         mClassMetricsContainer = classMap;
         mMyClassName = jc.getClassName();
         mClassMetrics = mClassMetricsContainer.getMetrics(getMyClassName());
+        System.out.println(jc.getInterfaceNames());
     }
 
     public Field[] getFields(){
@@ -109,15 +111,27 @@ public class ClassVisitor extends org.apache.bcel.classfile.EmptyVisitor {
         registerCoupling(super_name);
 
         Method[] methods = jc.getMethods();
-        System.out.println("ckjm-analyzer " + mMyClassName + " methods " + methods.length);
-        System.out.print("ckjm-analyzer " + mMyClassName + " params");
-        for (int i=0; i < methods.length; i++) {
+        System.out.print("ckjm-analyzer " + mMyClassName + " parameter_types");
+        for (int i = 0; i < methods.length; i++) {
             Type[] argTypes = methods[i].getArgumentTypes();
             // Print all method types
             for (int j = 0; j < argTypes.length; ++j) {
                 System.out.print(" " + argTypes[j].toString());
             }
             methods[i].accept(this);
+        }
+        System.out.println();
+
+        System.out.print("ckjm-analyzer " + mMyClassName + " interfaces");
+        String[] interfaces = jc.getInterfaceNames();
+        for (int i = 0; i < interfaces.length; ++i) {
+            System.out.print(" " + interfaces[i]);
+        }
+        System.out.println();
+
+        System.out.print("ckjm-analyzer " + mMyClassName + " efferent_couplings");
+        for (int i = 0; i < efferentCouplingsList.size(); ++i) {
+            System.out.print(" " + efferentCouplingsList.get(i));
         }
         System.out.println();
     }
@@ -129,6 +143,7 @@ public class ClassVisitor extends org.apache.bcel.classfile.EmptyVisitor {
                 && !getMyClassName().equals(className))
             {
             mEfferentCoupledClasses.add(className);
+            efferentCouplingsList.add(className);
             mClassMetricsContainer.getMetrics(className).addAfferentCoupling(getMyClassName());
         }
     }
@@ -199,9 +214,8 @@ public class ClassVisitor extends org.apache.bcel.classfile.EmptyVisitor {
         factory.start();
         
         ntree = factory.getMethodsNames();
-        ntree.setId( mg.getName() + mg.getSignature() ); 
+        ntree.setId( mg.getName() + mg.getSignature() );
         mMethodsUsedByMethods.add( ntree );
-        
     }
 
     /** Return a class name associated with a type. */
